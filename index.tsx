@@ -179,10 +179,12 @@ async function createNewMonthData() {
         { description: "CONTA DA CLARO", amount: 55.00, category: "Moradia", day: 5 },
         { description: "CONTA DA VIVO - ANDRÉ", amount: 35.00, category: "Moradia", day: 5 },
         { description: "PSICÓLOGA DA MARCELLY", amount: 280.00, category: "Saúde", day: 10 }, 
-        { description: "INTERMÉDICA DO ANDRÉ (MARCIA BRITO)", amount: 123.00, category: "Saúde", day: 15 },
+        // MARCIA BRITO: PAGO
+        { description: "INTERMÉDICA DO ANDRÉ (MARCIA BRITO)", amount: 123.00, category: "Saúde", day: 15, initialPaid: true },
         { description: "INTERNET DE CASA", amount: 125.00, category: "Moradia", day: 18, initialPaid: true },
         { description: "CIDADANIA PORTUGUESA (REBECCA BRITO)", amount: 140.00, category: "Dívidas", day: 20, initialPaid: true },
-        { description: "APPAI DO ANDRÉ (MARCIA BRITO)", amount: 123.55, category: "Saúde", day: 20 },
+        // MARCIA BRITO: PAGO
+        { description: "APPAI DO ANDRÉ (MARCIA BRITO)", amount: 123.55, category: "Saúde", day: 20, initialPaid: true },
         { description: "SEGURO DO CARRO (SEPARAR NO SOFISA)", amount: 143.00, category: "Transporte", day: 20 },
         // MÁRCIA BISPO: Alterado para false para aparecer nos repasses pendentes
         { description: "APPAI DA MARCELLY (MÁRCIA BISPO)", amount: 110.00, category: "Saúde", day: 23, initialPaid: false }, 
@@ -284,6 +286,11 @@ async function createNewMonthData() {
             // Ajuste: Iniciar na parcela 2 neste mês.
             if (def.description.includes("RENEGOCIAR CARREFOUR")) {
                 startInstallment = 2;
+            }
+            
+            // MARCIA BRITO: Marcar tudo como pago (Solicitação do usuário)
+            if (def.description.toUpperCase().includes("MARCIA BRITO")) {
+                isPaid = true;
             }
 
             if (shouldAdd) {
